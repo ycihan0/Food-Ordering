@@ -1,3 +1,21 @@
+
+<p align="center">
+</p>
+<p align="center">
+  <a href="https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/graphs/contributors"><img src="https://img.shields.io/github/contributors/Tobeto-dotNet2A-Pair2/LibraryManagementSystem.svg?style=for-the-badge"></a>
+  <a href="https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/network/members"><img src="https://img.shields.io/github/forks/Tobeto-dotNet2A-Pair2/LibraryManagementSystem.svg?style=for-the-badge"></a>
+  <a href="https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/stargazers"><img src="https://img.shields.io/github/stars/Tobeto-dotNet2A-Pair2/LibraryManagementSystem.svg?style=for-the-badge"></a>
+  <a href="https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/issues"><img src="https://img.shields.io/github/issues/Tobeto-dotNet2A-Pair2/LibraryManagementSystem.svg?style=for-the-badge"></a>
+  <a href="https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Tobeto-dotNet2A-Pair2/LibraryManagementSystem.svg?style=for-the-badge"></a>
+  <a href="https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem.git"> <img src="https://komarev.com/ghpvc/?username=Tobeto-dotNet2A-Pair2&label=Project%20views&color=0e75b6&style=for-the-badge" alt="Project views" /> </a>
+</p>
+<p align="center">
+ <h3 align="center">Food Ordering</h1>
+  <p align="center">
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
