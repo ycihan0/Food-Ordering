@@ -9,7 +9,7 @@ const Header = () => {
           <Logo />
         </div>
         <nav>
-          <ul className="flex gap-x-2">
+          <ul className="flex gap-x-2 items-center">
             <li className="px-[5px] py-[20px] uppercase hover:text-primary cursor-pointer">
               <a href="">Home</a>
             </li>
@@ -24,7 +24,7 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        <div className="flex gap-x-4">
+        <div className="flex gap-x-4 items-center">
           <a href="#">
             <FaUserAlt />
           </a>
@@ -33,6 +33,9 @@ const Header = () => {
           </a>
           <a href="#">
             <FaSearch />
+          </a>
+          <a href="#">
+            <button className="btn-primary">Order Online</button>
           </a>
         </div>
       </div>
