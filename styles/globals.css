@@ -1,4 +1,6 @@
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   box-sizing: border-box;
@@ -18,7 +20,4 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
