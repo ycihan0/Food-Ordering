@@ -1,18 +1,17 @@
-
 <p align="center">
 </p>
 <p align="center">
-  <a href="https://github.com/ycihan0/Food-Ordering/graphs/contributors"><img src="https://img.shields.io/github/contributors/Food-Ordering/LibraryManagementSystem.svg?style=for-the-badge"></a>
-  <a href="https://github.com/ycihan0/Food-Ordering/network/members"><img src="https://img.shields.io/github/forks/Tobeto-dotNet2A-Pair2/Food-Ordering.svg?style=for-the-badge"></a>
-  <a href="https://github.com/ycihan0/Food-Ordering/stargazers"><img src="https://img.shields.io/github/stars/Tobeto-dotNet2A-Pair2/Food-Ordering.svg?style=for-the-badge"></a>
-  <a href="https://github.com/ycihan0/Food-Ordering/issues"><img src="https://img.shields.io/github/issues/Tobeto-dotNet2A-Pair2/Food-Ordering.svg?style=for-the-badge"></a>
-  <a href="https://github.com/ycihan0/Food-Ordering/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Tobeto-dotNet2A-Pair2/Food-Ordering.svg?style=for-the-badge"></a>
-  <a href="https://github.com/ycihan0/Food-Ordering.git"> <img src="https://komarev.com/ghpvc/?username=Food-Ordering&label=Project%20views&color=0e75b6&style=for-the-badge" alt="Project views" /> </a>
+  <a href="https://github.com/ycihan0/Food-Ordering/graphs/contributors"><img src="https://img.shields.io/github/contributors/ycihan0/Food-Ordering.svg?style=for-the-badge"></a>
+  <a href="https://github.com/ycihan0/Food-Ordering/network/members"><img src="https://img.shields.io/github/forks/ycihan0/Food-Ordering.svg?style=for-the-badge"></a>
+  <a href="https://github.com/ycihan0/Food-Ordering/stargazers"><img src="https://img.shields.io/github/stars/ycihan0/Food-Ordering.svg?style=for-the-badge"></a>
+  <a href="https://github.com/ycihan0/Food-Ordering/issues"><img src="https://img.shields.io/github/issues/ycihan0/Food-Ordering.svg?style=for-the-badge"></a>
+  <a href="https://github.com/ycihan0/Food-Ordering/blob/master/LICENSE"><img src="https://img.shields.io/github/license/ycihan0/Food-Ordering.svg?style=for-the-badge"></a>
+  <a href="https://github.com/ycihan0/Food-Ordering"><img src="https://komarev.com/ghpvc/?username=ycihan0&label=Project%20views&color=0e75b6&style=for-the-badge" alt="Project views" /></a>
 </p>
 <p align="center">
- <h3 align="center">Food Ordering</h1>
+ <h3 align="center">Food Ordering</h3>
   <p align="center">
-
+  <p align="center">
 
 
 
