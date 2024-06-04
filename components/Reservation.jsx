@@ -1,7 +1,17 @@
 import Input from "./form/Input";
 import Title from "./ui/Title";
+import {useFormik } from 'formik';
 
 const Reservation = () => {
+  const formik=useFormik({
+    initialValues:{
+      fullName,
+      phoneNumber,
+      email,
+      persons,
+      date
+    }
+  })
   const inputs = [
     {
       id: 1,
@@ -29,7 +39,7 @@ const Reservation = () => {
     },
     {
       id: 5,
-      name: "persons",
+      name: "date",
       type: "datetime-local",
       placeholder: "How Many Persons?",
     },
