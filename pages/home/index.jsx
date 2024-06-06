@@ -8,14 +8,14 @@ import React from 'react'
 
 const Index = () => {
   return (
-    <div>
+    <React.Fragment>
       <Carousel/>
       <Campaigns/>
       <MenuWrapper/>
       <About/>
       <Reservation/>
       <Customers/>
-    </div>
+    </React.Fragment>
   )
 }
 
