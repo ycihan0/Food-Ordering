@@ -11,8 +11,8 @@ const CustomerItem = ({imgSrc}) => {
           place was also very nice, we felt very comfortable. Thanks!
         </p>
         <div className="flex flex-col mt-4">
-          <span className="text-lg font-semibold">isism</span>
-          <span className="text-[15px]">isisim</span>
+          <span className="text-lg font-semibold">Moana Michell</span>
+          <span className="text-[15px]">magna aliqua</span>
         </div>
       </div>
 
