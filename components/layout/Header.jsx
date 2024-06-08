@@ -11,9 +11,11 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <div  className={`h-[5.5rem] z-50 relative ${
-      router.asPath === "/" ? "bg-transparent" : "bg-secondary"
-    }`}>
+    <div
+      className={`h-[5.5rem] z-50 relative ${
+        router.asPath === "/" ? "bg-transparent" : "bg-secondary"
+      }`}
+    >
       <div className="container mx-auto text-white flex justify-between items-center h-full">
         <Logo />
         <nav
@@ -46,10 +48,14 @@ const Header = () => {
         </nav>
         <div className="flex gap-x-4 items-center">
           <Link href="/auth/login">
-            <FaUserAlt className="hover:text-primary transition-all" />
+            <span>
+              <FaUserAlt className="hover:text-primary transition-all" />
+            </span>
           </Link>
           <Link href="/cart">
-            <FaShoppingCart className="hover:text-primary transition-all" />
+            <span>
+              <FaShoppingCart className="hover:text-primary transition-all" />
+            </span>
           </Link>
           <button>
             <FaSearch
