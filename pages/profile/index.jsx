@@ -82,7 +82,7 @@ const Profile = () => {
     },
   ];
   return (
-    <div className="flex px-10 min-h-[calc(100vh_-_433px)]">
+    <div className="flex px-10 min-h-[calc(100vh_-_433px)] lg:flex-row flex-col">
       <div className="w-80 flex-shrink-0">
         <div className="relative flex flex-col items-center px-10 py-5 border border-b-0">
           <Image
@@ -113,9 +113,9 @@ const Profile = () => {
           </li>
         </ul>
       </div>
-      <form className="p-8 flex-1" onSubmit={onSubmit}>
+      <form className="lg:p-8 flex-1 lg:mt-0 mt-2-5" onSubmit={onSubmit}>
         <Title addClass="text-[40px]">Account Settings</Title>
-        <div className="grid grid-cols-2 gap-4 mt-4">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mt-4">
           {inputs.map((input) => (
             <Input key={input.id} {...input} onBlur={handleBlur} onChange={handleChange}/>
           ))}
