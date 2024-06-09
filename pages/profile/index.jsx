@@ -47,10 +47,7 @@ const Profile = () => {
             <i className="fa fa-motorcycle"></i>
             <button className="ml-1">Orders</button>
           </li>
-          <li
-            className="border w-full p-3 cursor-pointer hover:bg-danger hover:text-white transition-all"
-            onClick={() => setTabs(3)}
-          >
+          <li className="border w-full p-3 cursor-pointer hover:bg-danger hover:text-white transition-all">
             <i className="fa fa-sign-out"></i>
             <button className="ml-1">Exit</button>
           </li>
@@ -58,6 +55,7 @@ const Profile = () => {
       </div>
       {tabs === 0 && <Account />}
       {tabs === 1 && <Password />}
+      {tabs === 2 && <Password />}
     </div>
   );
 };
