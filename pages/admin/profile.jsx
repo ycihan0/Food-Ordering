@@ -1,8 +1,8 @@
 import Image from "next/image";
-
 import { useState } from "react";
-import Product from "@/components/admin/Product";
+import Products from "@/components/admin/Products";
 import Order from "../../components/admin/Order";
+import Category from "@/components/admin/Category";
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
 
@@ -64,9 +64,9 @@ const Profile = () => {
           </li>
         </ul>
       </div>
-      {tabs === 0 && <Product />}
+      {tabs === 0 && <Products />}
       {tabs === 1 && <Order />}
- 
+      {tabs === 2 && <Category />}
     </div>
   );
 };
