@@ -4,6 +4,7 @@ import { registerSchema } from "@/schema/register";
 import axios from "axios";
 import { useFormik } from "formik";
 import Link from "next/link";
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const onSubmit = async (values, actions) => {
@@ -12,8 +13,11 @@ const Register = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/users/register`,
         values
       );
+      if (res.status === 200) {
+        toast.success("User created successfully");
+      }
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
     }
   };
 
@@ -40,7 +44,7 @@ const Register = () => {
       touched: touched.fullName,
     },
     {
-      id: 3,
+      id: 2,
       name: "email",
       type: "email",
       placeholder: "Your Email Address",
@@ -49,7 +53,7 @@ const Register = () => {
       touched: touched.email,
     },
     {
-      id: 2,
+      id: 3,
       name: "password",
       type: "password",
       placeholder: "Your Password",
@@ -58,7 +62,7 @@ const Register = () => {
       touched: touched.password,
     },
     {
-      id: 2,
+      id: 4,
       name: "confirmPassword",
       type: "password",
       placeholder: "Your Password Again",
