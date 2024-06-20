@@ -3,11 +3,24 @@ import Input from "@/components/form/Input";
 import Title from "@/components/ui/Title";
 import Link from "next/link";
 import { adminSchema } from "@/schema/admin";
+import { useRouter } from "next/router";
 
-const Index = () => {
+const Login = () => {
+  const { push } = useRouter();
   const onSubmit = async (values, actions) => {
-    await new Promise((resolve) => setTimeout(resolve, 4000));
-    actions.resetForm();
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/admin`,
+        values
+      );
+      if (res.status === 200) {
+        actions.resetForm();
+        toast.success("Admin Login Success!");
+        push("/admin/profile");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
@@ -42,7 +55,10 @@ const Index = () => {
   ];
   return (
     <div className="container mx-auto py-3">
-      <form className="flex flex-col items-center my-20 md:w-1/2 w-full mx-auto" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col items-center my-20 md:w-1/2 w-full mx-auto"
+        onSubmit={handleSubmit}
+      >
         <Title addClass="text-[40px] mb-6">Admin Login</Title>
         <div className="flex flex-col gap-y-3 w-full">
           {inputs.map((input) => (
@@ -56,8 +72,10 @@ const Index = () => {
         </div>
         <div className="flex flex-col w-full gap-y-3 mt-6">
           <button className="btn-primary">LOGIN</button>
-         <Link href="/">
-            <span className="text-sm underline cursor-pointer text-secondary ">Home Page</span>
+          <Link href="/">
+            <span className="text-sm underline cursor-pointer text-secondary ">
+              Home Page
+            </span>
           </Link>
         </div>
       </form>
@@ -65,4 +83,8 @@ const Index = () => {
   );
 };
 
-export default Index;
+export const getServerSideProps = (ctx) => {
+  const myCookie = ctx.req?.cookies || "";
+};
+
+export default Login;
