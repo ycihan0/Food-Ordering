@@ -16,9 +16,10 @@ const Register = () => {
       if (res.status === 200) {
         toast.success("User created successfully");
       }
-    } catch (error) {
-      toast.error(error.response.data.message);
+    } catch (err) {
+      toast.error(err.response.data.message);
     }
+    actions.resetForm();
   };
 
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
