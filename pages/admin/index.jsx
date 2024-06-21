@@ -4,6 +4,8 @@ import Title from "@/components/ui/Title";
 import Link from "next/link";
 import { adminSchema } from "@/schema/admin";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { push } = useRouter();
@@ -85,6 +87,18 @@ const Login = () => {
 
 export const getServerSideProps = (ctx) => {
   const myCookie = ctx.req?.cookies || "";
+  if (myCookie.token === process.env.ADMIN_TOKEN) {
+    return {
+      redirect: {
+        destination: "/admin/profile",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default Login;
