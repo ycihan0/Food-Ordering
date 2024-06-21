@@ -5,6 +5,8 @@ import Order from "../../components/admin/Order";
 import Category from "@/components/admin/Category";
 import Footer from "@/components/admin/Footer";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { toast } from "react-toastify";
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
 
