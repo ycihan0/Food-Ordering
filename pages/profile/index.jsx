@@ -6,22 +6,19 @@ import Order from "@/components/profile/Order";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-const Profile = () => {
+const Profile = ({ session }) => {
   const [tabs, setTabs] = useState(0);
   const { push } = useRouter();
-  const { data: session } = useSession();
 
   const handleSignOut = () => {
-    if (confirm("Are you sure you want to sign out")) {
+    if (confirm("Are you sure you want to sign out?")) {
       signOut({ redirect: false });
       push("/auth/login");
     }
   };
 
   useEffect(() => {
-    if (!session) {
-      push("/auth/login");
-    }
+    push("/auth/login");
   }, [session, push]);
 
   return (
@@ -80,5 +77,22 @@ const Profile = () => {
     </div>
   );
 };
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      session,
+    },
+  };
+}
 
 export default Profile;
