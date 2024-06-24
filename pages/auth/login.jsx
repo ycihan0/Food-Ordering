@@ -5,8 +5,8 @@ import Title from "@/components/ui/Title";
 import { loginSchema } from "@/schema/login";
 import { useSession, signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Login = () => {
   const { data: session } = useSession();
@@ -19,20 +19,20 @@ const Login = () => {
     try {
       const res = await signIn("credentials", options);
       actions.resetForm();
-      } catch (error) {
-      error;
+    } catch (err) {
+      err;
     }
   };
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        console.log(session)
+        console.log(session);
         const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`);
         setCurrentUser(
           res.data?.find((user) => user.email === session?.user?.email)
         );
-        push("/profile/" + currentUser?._id);
+        session && push("/profile/" + currentUser?._id);
       } catch (err) {
         console.log(err);
       }
@@ -117,7 +117,7 @@ export async function getServerSideProps({ req }) {
   if (session && user) {
     return {
       redirect: {
-        destination: "/profile/"+user._id,
+        destination: "/profile/" + user._id,
         permanent: false,
       },
     };

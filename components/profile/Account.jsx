@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import { profileSchema } from "@/schema/profile";
 import Input from "../form/Input";
 import Title from "../ui/Title";
+import axios from "axios";
 
 const Account = ({ user }) => {
   const onSubmit = async (values, actions) => {

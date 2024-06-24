@@ -74,7 +74,9 @@ const Login = () => {
           ))}
         </div>
         <div className="flex flex-col w-full gap-y-3 mt-6">
-          <button className="btn-primary">LOGIN</button>
+          <button type="submit" className="btn-primary">
+            LOGIN
+          </button>
           <Link href="/">
             <span className="text-sm underline cursor-pointer text-secondary ">
               Home Page
