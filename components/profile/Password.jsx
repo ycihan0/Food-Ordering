@@ -2,15 +2,24 @@ import { useFormik } from "formik";
 import Input from "../form/Input";
 import Title from "../ui/Title";
 import { newPasswordSchema } from "@/schema/newPassword";
+import axios from "axios";
 
-const Password = () => {
+const Password = ({ user }) => {
   const onSubmit = async (values, actions) => {
-    await new Promise((resolve) => setTimeout(resolve, 4000));
-    actions.resetForm();
+    try {
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}`,
+        values
+      );
+      actions.resetForm();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
     useFormik({
+      enableReinitialize: true,
       initialValues: {
         password: "",
         confirmPassword: "",
@@ -53,7 +62,9 @@ const Password = () => {
           />
         ))}
       </div>
-      <button className="btn-primary mt-4" type="submit">Update</button>
+      <button className="btn-primary mt-4" type="submit">
+        Update
+      </button>
     </form>
   );
 };

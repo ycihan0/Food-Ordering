@@ -3,21 +3,29 @@ import { profileSchema } from "@/schema/profile";
 import Input from "../form/Input";
 import Title from "../ui/Title";
 
-const Account = () => {
+const Account = ({ user }) => {
   const onSubmit = async (values, actions) => {
-    await new Promise((resolve) => setTimeout(resolve, 4000));
+    try {
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}`,
+        values
+      );
+    } catch (err) {
+      console.log(err);
+    }
     actions.resetForm();
   };
 
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
     useFormik({
+      enableReinitialize: true,
       initialValues: {
-        fullName: "",
-        phoneNumber: "",
-        email: "",
-        address: "",
-        job: "",
-        bio: "",
+        fullName: user?.fullName,
+        phoneNumber: user?.phoneNumber,
+        email: user?.email,
+        address: user?.address,
+        job: user?.job,
+        bio: user?.bio,
       },
       onSubmit,
       validationSchema: profileSchema,
@@ -92,7 +100,9 @@ const Account = () => {
           />
         ))}
       </div>
-      <button className="btn-primary mt-4">Update</button>
+      <button className="btn-primary mt-4" type="submit">
+        Update
+      </button>
     </form>
   );
 };

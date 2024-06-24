@@ -4,12 +4,14 @@ import Input from "@/components/form/Input";
 import Title from "@/components/ui/Title";
 import { loginSchema } from "@/schema/login";
 import { useSession, signIn, getSession } from "next-auth/react";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Login = () => {
   const { data: session } = useSession();
   const { push } = useRouter();
+  const [currentUser, setCurrentUser] = useState();
 
   const onSubmit = async (values, actions) => {
     const { email, password } = values;
@@ -17,11 +19,26 @@ const Login = () => {
     try {
       const res = await signIn("credentials", options);
       actions.resetForm();
-      push("/profile");
-    } catch (error) {
+      } catch (error) {
       error;
     }
   };
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        console.log(session)
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`);
+        setCurrentUser(
+          res.data?.find((user) => user.email === session?.user?.email)
+        );
+        push("/profile/" + currentUser?._id);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUser();
+  }, [session, push, currentUser]);
 
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
     useFormik({
@@ -94,10 +111,13 @@ const Login = () => {
 
 export async function getServerSideProps({ req }) {
   const session = await getSession({ req });
-  if (session) {
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`);
+  const user = res.data?.find((user) => user.email === session?.user.email);
+
+  if (session && user) {
     return {
       redirect: {
-        destination: "/profile",
+        destination: "/profile/"+user._id,
         permanent: false,
       },
     };
