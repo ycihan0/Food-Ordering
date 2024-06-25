@@ -9,7 +9,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
-
+  const [isProductModal, setIsProductModal] = useState(false);
   const { push } = useRouter();
   const closeAdminAccount = async () => {
     try {
@@ -88,6 +88,13 @@ const Profile = () => {
       {tabs === 1 && <Order />}
       {tabs === 2 && <Category />}
       {tabs === 3 && <Footer />}
+      {isProductModal && <AddProduct setIsProductModal={setIsProductModal} />}
+      <button
+        className="btn-primary !w-12 !h-12 !p-0 absolute bottom-14 right-10 text-4xl"
+        onClick={() => setIsProductModal(true)}
+      >
+        +
+      </button>
     </div>
   );
 };
