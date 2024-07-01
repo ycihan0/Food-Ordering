@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import Title from "../ui/Title";
 import { GiCancel } from "react-icons/gi";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddProduct = ({ setIsProductModal }) => {
   const [file, setFile] = useState();
@@ -17,6 +18,28 @@ const AddProduct = ({ setIsProductModal }) => {
 
   const [categories, setCategories] = useState([]);
 
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/categories`
+        );
+        setCategories(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProducts();
+  }, []);
+
+  const handleExtra = (e) => {
+    if (extra) {
+      if (extra.text && extra.price) {
+        setExtraOptions((prev) => [...prev, extra]);
+      }
+    }
+  };
+
   const handleOnChange = (changeEvent) => {
     const reader = new FileReader();
 
@@ -26,6 +49,12 @@ const AddProduct = ({ setIsProductModal }) => {
     };
 
     reader.readAsDataURL(changeEvent.target.files[0]);
+  };
+
+  const changePrice = (e, index) => {
+    const currentPrices = prices;
+    currentPrices[index] = e.target.value;
+    setPrices(currentPrices);
   };
 
   const handleCreate = async () => {
@@ -38,6 +67,26 @@ const AddProduct = ({ setIsProductModal }) => {
         "https://api.cloudinary.com/v1_1/dlg7azrx0/image/upload",
         data
       );
+
+      const { url } = uploadRes.data;
+      const newProduct = {
+        img: url,
+        title,
+        desc,
+        category: category.toLowerCase(),
+        prices,
+        extraOptions,
+      };
+
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/products`,
+        newProduct
+      );
+
+      if (res.status === 201) {
+        setIsProductModal(false);
+        toast.success("Product created successfully!");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -151,18 +200,38 @@ const AddProduct = ({ setIsProductModal }) => {
                   type="text"
                   className="border-b-2 p-1 pl-0 text-sm px-1 outline-none w-36"
                   placeholder="item"
+                  name="text"
+                  onChange={(e) =>
+                    setExtra({ ...extra, [e.target.name]: e.target.value })
+                  }
                 />
                 <input
                   type="number"
                   className="border-b-2 p-1 pl-0 text-sm px-1 outline-none w-36"
                   placeholder="price"
+                  name="price"
+                  onChange={(e) =>
+                    setExtra({ ...extra, [e.target.name]: e.target.value })
+                  }
                 />
-                <button className="btn-primary ml-auto">Add</button>
+                <button className="btn-primary ml-auto" onClick={handleExtra}>
+                  Add
+                </button>
               </div>
-              <div className="mt-2">
-                <span className="inline-block border border-orange-500 text-orange-500  p-1 rounded-xl text-xs">
-                  ketçap
-                </span>
+              <div className="mt-2 flex gap-2">
+                {extraOptions.map((item, index) => (
+                  <span
+                    className="inline-block border border-orange-500 text-orange-500  p-1 rounded-xl text-xs cursor-pointer"
+                    key={index}
+                    onClick={() => {
+                      setExtraOptions(
+                        extraOptions.filter((_, i) => i !== index)
+                      );
+                    }}
+                  >
+                    {item.text}
+                  </span>
+                ))}
               </div>
             </div>
             <div className="flex justify-end">
