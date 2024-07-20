@@ -3,6 +3,7 @@ import { profileSchema } from "@/schema/profile";
 import Input from "../form/Input";
 import Title from "../ui/Title";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Account = ({ user }) => {
   const onSubmit = async (values, actions) => {
@@ -11,10 +12,12 @@ const Account = ({ user }) => {
         `${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}`,
         values
       );
+      if (res.status === 200) {
+        toast.success("Profile updated successfully");
+      }
     } catch (err) {
       console.log(err);
     }
-    actions.resetForm();
   };
 
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
