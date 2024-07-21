@@ -24,8 +24,11 @@ export default function App({
     <SessionProvider session={session}>
       <Provider store={store}>
         <Layout>
+          <div className="pt-[88px]">
           <ToastContainer />
           <Component {...pageProps} />
+          </div>
+        
         </Layout>
       </Provider>
     </SessionProvider>
