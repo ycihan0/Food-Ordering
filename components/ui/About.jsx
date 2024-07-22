@@ -7,7 +7,7 @@ const About = () => {
       <div className="container mx-auto flex items-center text-white gap-20  justify-center flex-wrap-reverse">
         <div className="flex justify-center">
           <div className="relative sm:w-[445px] sm:h-[600px] flex justify-center w-[300px] h-[450px] ">
-            <Image src="/images/about-img.png" layout="fill" alt="" />
+            <Image src="/images/about-img.png" fill alt=""   sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"/>
           </div>
         </div>
         <div className="md:w-1/2">

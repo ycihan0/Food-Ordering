@@ -29,8 +29,8 @@ const Carousel = () => {
           <Image
             src="/images/hero.jpg"
             alt=""
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: 'cover' }}
             priority
           />
         </div>

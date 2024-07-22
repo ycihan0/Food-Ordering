@@ -9,9 +9,10 @@ const CampaignItem = () => {
         <Image
           src="/images/o1.jpg"
           alt=""
-          layout="fill"
+          fill
           className="hover:scale-105 transition-all"
-          objectFit="cover"
+          style={{ objectFit: 'cover' }}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority
         />
       </div>
