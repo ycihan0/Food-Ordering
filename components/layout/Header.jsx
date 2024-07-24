@@ -91,7 +91,7 @@ const Header = () => {
                 size={18}
               />
               <span className="px-[5px] text-[10px]   rounded-full bg-primary absolute -top-2 -right-3 text-black inline-flex items-center justify-center font-bold">
-                {cart.products.length === 0 ? "0" : cart.products.length}
+                {cart.products.length === 0 ? "" : cart.products.length}
               </span>
             </span>
           </Link>

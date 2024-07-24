@@ -15,7 +15,7 @@ const Login = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/admin`,
         values
       );
-      console.log(res.json());
+
       if (res.status === 200) {
         actions.resetForm();
         toast.success("Admin Login Success!");

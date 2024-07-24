@@ -1,3 +1,4 @@
+import React from "react";
 import { useFormik } from "formik";
 import { profileSchema } from "@/schema/profile";
 import Input from "../form/Input";
@@ -7,6 +8,7 @@ import { toast } from "react-toastify";
 
 const Account = ({ user }) => {
   const onSubmit = async (values, actions) => {
+    console.log("here")
     try {
       const res = await axios.put(
         `${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}`,
@@ -25,11 +27,11 @@ const Account = ({ user }) => {
       enableReinitialize: true,
       initialValues: {
         fullName: user?.fullName,
-        phoneNumber: user?.phoneNumber,
+        phoneNumber: user?.phoneNumber || "",
         email: user?.email,
-        address: user?.address,
-        job: user?.job,
-        bio: user?.bio,
+        address: user?.address || "",
+        job: user?.job || "",
+        bio: user?.bio || "",
       },
       onSubmit,
       validationSchema: profileSchema,

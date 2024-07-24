@@ -20,14 +20,13 @@ const Login = () => {
       const res = await signIn("credentials", options);
       actions.resetForm();
     } catch (err) {
-      err;
+      console.log(err);
     }
   };
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        console.log(session);
         const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`);
         setCurrentUser(
           res.data?.find((user) => user.email === session?.user?.email)
