@@ -58,10 +58,16 @@ const AddProduct = ({ setIsProductModal }) => {
   };
 
   const handleCreate = async () => {
+    if (!category) {
+      toast.error("Please select a category");
+      return;
+    }
+
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "food-ordering");
 
+  
     try {
       const uploadRes = await axios.post(
         "https://api.cloudinary.com/v1_1/dlg7azrx0/image/upload",
@@ -146,7 +152,9 @@ const AddProduct = ({ setIsProductModal }) => {
                 className="border-2 p-1 text-sm px-1 outline-none"
                 placeholder="Write a title..."
                 onChange={(e) => setCategory(e.target.value)}
+                
               >
+  
                 {categories.length > 0 &&
                   categories.map((category) => (
                     <option

@@ -63,7 +63,7 @@ const Search = ({ setIsSearchModal }) => {
                           alt={product?.title}
                           width={48}
                           height={48}
-                        />
+                          />
                       </div>
                       <span className="font-bold">{product?.title}</span>
                       <span className="font-bold">${product.prices[0]}</span>

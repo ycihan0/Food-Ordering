@@ -36,6 +36,8 @@ const Profile = () => {
             width={100}
             height={100}
             className="rounded-full"
+            priority 
+            style={{ width: "auto", height: "auto" }} 
           />
           <b className="text-2xl mt-1">Admin</b>
         </div>

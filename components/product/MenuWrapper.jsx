@@ -5,7 +5,7 @@ import MenuItem from "./MenuItem";
 const MenuWrapper = ({ categoryList, productList }) => {
   const [active, setActive] = useState(0);
   const [filter, setFilter] = useState([]);
-  const [productLimit, setProductLimit] = useState(3);
+  const [productLimit, setProductLimit] = useState(6);
 
   useEffect(() => {
     setFilter(
@@ -30,7 +30,7 @@ const MenuWrapper = ({ categoryList, productList }) => {
                 key={category._id}
                 onClick={() => {
                   setActive(index);
-                  setProductLimit(3);
+                  setProductLimit(6);
                 }}
               >
                 {category.title}
