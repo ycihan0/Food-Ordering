@@ -38,7 +38,7 @@ const Footer = () => {
               </a>
               <a href={`mailto:${footer?.email}`}>
                 <i className="fa fa-envelope"></i>
-                <span className="inline-block ml-2">demo@gmail.com</span>
+                <span className="inline-block ml-2">cihan_yuksel26@hotmail.com</span>
               </a>
             </div>
           </div>
@@ -76,7 +76,7 @@ const Footer = () => {
           </div>
         </div>
         <p className="text-center mt-10">
-          © 2022 All Rights Reserved By Free Html Templates
+          © 2024 Created by Cihan Yüksel with ❤️
         </p>
       </div>
     </div>
