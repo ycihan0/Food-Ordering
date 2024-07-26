@@ -3,9 +3,11 @@ import Title from "../ui/Title";
 import Image from "next/image";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const router = useRouter();
 
   const handleDelete = async (id) => {
     try {
@@ -66,8 +68,9 @@ const Products = () => {
             {products.length > 0 &&
               products.map((product) => (
                 <tr
-                  className="transition-all bg-secondary border-gray-700 hover:bg-primary "
+                  className="transition-all bg-secondary border-gray-700 hover:bg-primary cursor-pointer"
                   key={product._id}
+                  onClick={()=>{router.push(`/product/${product?._id}`)}}
                 >
                   <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white flex items-center gap-x-1 justify-center">
                     <Image
@@ -86,12 +89,18 @@ const Products = () => {
                   <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
                     $ {product.prices[0]}
                   </td>
-                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white ">
                     <button
-                      className="btn-primary !bg-danger"
+                      className="btn-primary !bg-danger mr-1"
                       onClick={() => handleDelete(product._id)}
                     >
                       Delete
+                    </button>
+                    <button
+                      className="btn-primary !bg-lime-500"
+                      onClick={() => handleDelete(product._id)}
+                    >
+                      Update
                     </button>
                   </td>
                 </tr>

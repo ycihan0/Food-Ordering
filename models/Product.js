@@ -32,6 +32,9 @@ const ProductSchema = new mongoose.Schema(
         },
       ],
     },
+    discount: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Title from '../ui/Title'
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const Order = () => {
-
+  const router = useRouter();
   const [orders, setOrders] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
   const { data: session } = useSession();
@@ -65,8 +66,9 @@ const Order = () => {
           <tbody>
           {orders.map((order) => (
               <tr
-                className="transition-all bg-secondary border-gray-700 hover:bg-primary"
+                className="transition-all bg-secondary border-gray-700 hover:bg-primary cursor-pointer"
                 key={order?._id}
+                onClick={()=>{router.push(`/order/${order?._id}`)}}
               >
                 <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white flex items-center gap-x-1 justify-center">
                   <span>63107...</span>

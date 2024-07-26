@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Title from "../ui/Title";
+import { useRouter } from "next/router";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
+  const router = useRouter();
   const status = ["preparing", "on the way", "delivered"];
+
   useEffect(() => {
     const getOrders = async () => {
       try {
@@ -69,6 +72,7 @@ const Order = () => {
                   <tr
                     className="transition-all bg-secondary border-gray-700 hover:bg-primary"
                     key={order?._id}
+                   
                   >
                     <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white gap-x-1 ">
                       {order?._id.substring(0, 6)}...

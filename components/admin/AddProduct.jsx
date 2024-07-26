@@ -12,6 +12,7 @@ const AddProduct = ({ setIsProductModal }) => {
   const [desc, setDesc] = useState("");
   const [category, setCategory] = useState("pizza");
   const [prices, setPrices] = useState([]);
+  const [discount, setDiscount] = useState("");
 
   const [extra, setExtra] = useState("");
   const [extraOptions, setExtraOptions] = useState([]);
@@ -56,7 +57,9 @@ const AddProduct = ({ setIsProductModal }) => {
     currentPrices[index] = e.target.value;
     setPrices(currentPrices);
   };
-
+  const changeDiscount = (e) => {
+     setDiscount( e.target.value);
+  };
   const handleCreate = async () => {
     if (!category) {
       toast.error("Please select a category");
@@ -67,7 +70,6 @@ const AddProduct = ({ setIsProductModal }) => {
     data.append("file", file);
     data.append("upload_preset", "food-ordering");
 
-  
     try {
       const uploadRes = await axios.post(
         "https://api.cloudinary.com/v1_1/dlg7azrx0/image/upload",
@@ -82,6 +84,7 @@ const AddProduct = ({ setIsProductModal }) => {
         category: category.toLowerCase(),
         prices,
         extraOptions,
+        discount
       };
 
       const res = await axios.post(
@@ -152,9 +155,7 @@ const AddProduct = ({ setIsProductModal }) => {
                 className="border-2 p-1 text-sm px-1 outline-none"
                 placeholder="Write a title..."
                 onChange={(e) => setCategory(e.target.value)}
-                
               >
-  
                 {categories.length > 0 &&
                   categories.map((category) => (
                     <option
@@ -200,6 +201,15 @@ const AddProduct = ({ setIsProductModal }) => {
                   />
                 </div>
               )}
+            </div>
+            <div className="flex flex-col text-sm mt-4 w-full">
+              <span className="font-semibold mb-[2px]">Discount </span>
+              <input
+                type="number"
+                className="border-b-2 p-1 pl-0 text-sm px-1 outline-none w-36"
+                placeholder="%"
+                onChange={(e) => changeDiscount(e)}
+              />
             </div>
             <div className="flex flex-col text-sm mt-4 w-full">
               <span className="font-semibold mb-[2px]">Extra</span>
