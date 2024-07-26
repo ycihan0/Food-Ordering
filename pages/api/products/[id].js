@@ -25,6 +25,19 @@ const handler = async (req, res) => {
       console.log(err);
     }
   }
+
+  if (method === "PUT") {
+    try {
+      const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
+        new: true, 
+        runValidators: true, 
+      });
+      res.status(200).json(updatedProduct);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Error updating product" });
+    }
+  }
 };
 
 export default handler;

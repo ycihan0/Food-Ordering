@@ -4,10 +4,13 @@ import Image from "next/image";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import UpdateProduct from "./UpdateProduct";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const router = useRouter();
+  const [isProductUpdateModal, setIsProductUpdateModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null); 
 
   const handleDelete = async (id) => {
     try {
@@ -23,6 +26,11 @@ const Products = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleUpdate = (product) => {
+    setSelectedProduct(product); 
+    setIsProductUpdateModal(true); 
   };
 
   const getProducts = async () => {
@@ -68,11 +76,11 @@ const Products = () => {
             {products.length > 0 &&
               products.map((product) => (
                 <tr
-                  className="transition-all bg-secondary border-gray-700 hover:bg-primary cursor-pointer"
+                  className="transition-all bg-secondary border-gray-700 hover:bg-primary "
                   key={product._id}
-                  onClick={()=>{router.push(`/product/${product?._id}`)}}
+                  
                 >
-                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white flex items-center gap-x-1 justify-center">
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white flex items-center gap-x-1 justify-center cursor-pointer" onClick={()=>{router.push(`/product/${product?._id}`)}}>
                     <Image
                       src={product.img}
                       alt={product.title}
@@ -80,13 +88,13 @@ const Products = () => {
                       height={50}
                     />
                   </td>
-                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white cursor-pointer" onClick={()=>{router.push(`/product/${product?._id}`)}}>
                     {product._id.substring(0, 5)}...
                   </td>
-                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-whiten cursor-pointer" onClick={()=>{router.push(`/product/${product?._id}`)}}>
                     {product.title}
                   </td>
-                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white cursor-pointer" onClick={()=>{router.push(`/product/${product?._id}`)}}>
                     $ {product.prices[0]}
                   </td>
                   <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white ">
@@ -98,7 +106,7 @@ const Products = () => {
                     </button>
                     <button
                       className="btn-primary !bg-lime-500"
-                      onClick={() => handleDelete(product._id)}
+                      onClick={() => handleUpdate(product)}
                     >
                       Update
                     </button>
@@ -107,6 +115,12 @@ const Products = () => {
               ))}
           </tbody>
         </table>
+        {isProductUpdateModal && (
+          <UpdateProduct
+            setIsProductModal={setIsProductUpdateModal}
+            selectedProduct={selectedProduct}
+          />
+        )}
       </div>
     </div>
   );
