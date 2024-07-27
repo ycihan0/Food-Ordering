@@ -7,6 +7,6 @@ export const reservationSchema = Yup.object({
     .required("Phone Number is Required")
     .min(10, "Must be at least 10 characters."),
   email: Yup.string().required("Email is required.").email("Email is invalid."),
-  persons: Yup.string().required("Persons is required."),
-  date: Yup.string().required("Date is required."),
+  persons: Yup.number().required("Persons is required."),
+  date: Yup.date().required("Date is required."),
 });

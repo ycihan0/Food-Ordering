@@ -2,11 +2,41 @@ import { reservationSchema } from "@/schema/reservation";
 import Input from "./form/Input";
 import Title from "./ui/Title";
 import { useFormik } from "formik";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Reservation = () => {
+  const [footer, setFooter] = useState([]);
+
+  useEffect(() => {
+    const getFooter = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/footer`
+        );
+        setFooter(res.data[0].location);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getFooter();
+  }, []);
+
   const onSubmit = async (values, actions) => {
-    await new Promise((resolve) => setTimeout(resolve, 4000));
-    actions.resetForm();
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/reservation`,
+        values
+      );
+      if (res.status === 201) {
+            toast.success("The reservation is successful. You will be notified by e-mail once it is confirmed.");
+        actions.resetForm();
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("There was an error with your reservation. Please try again.");
+    }
   };
 
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
@@ -90,7 +120,7 @@ const Reservation = () => {
         </form>
         <div className="lg:flex-1  w-full">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.9856920619463!2d28.97155367585938!3d41.02556897134813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab9e7a7777c43%3A0x4c76cf3dcc8b330b!2sGalata%20Kulesi!5e0!3m2!1str!2str!4v1717525405194!5m2!1str!2str"
+            src={footer}
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

@@ -11,7 +11,7 @@ const About = () => {
           </div>
         </div>
         <div className="md:w-1/2">
-          <Title addClass="text-[40px]">We Are Feane</Title>
+          <Title addClass="text-[40px]">We Are Sizzle</Title>
           <p className="my-5">
             There are many variations of passages of Lorem Ipsum available, but
             the majority have suffered alteration in some form, by injected
