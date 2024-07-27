@@ -1,4 +1,9 @@
+import axios from "axios";
+import { useState } from "react";
+import { toast } from "react-toastify";
+
 const ReservationItems = ({ undefinedOrNullReservation }) => {
+  const [tableNumber, setTableNumber] = useState("");
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, "0");
@@ -8,6 +13,35 @@ const ReservationItems = ({ undefinedOrNullReservation }) => {
     const minutes = String(date.getMinutes()).padStart(2, "0");
 
     return `${day}/${month}/${year} ${hours}:${minutes}`;
+  };
+
+  const handleAccept = async () => {
+    try {
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/reservation/${undefinedOrNullReservation._id}`,
+        { status: true, tableNumber: tableNumber }
+      );
+
+      if (res.status === 200) {
+        toast.success("Successfully accepted");
+      }
+    } catch (err) {
+      console.error("Failed to update reservation status:", err);
+    }
+  };
+
+  const handleReject = async () => {
+    try {
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/reservation/${undefinedOrNullReservation._id}`,
+        { status: false, tableNumber: tableNumber }
+      );
+      if (res.status === 200) {
+        toast.success("Successfully rejected");
+      }
+    } catch (err) {
+      console.error("Failed to update reservation status:", err);
+    }
   };
 
   return (
@@ -36,20 +70,21 @@ const ReservationItems = ({ undefinedOrNullReservation }) => {
           Table Number:
         </label>
         <input
-          type="text"
+          type="number"
           className="input input-bordered w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+          onChange={(e) => setTableNumber(e.target.value)}
         />
       </div>
       <div className="flex gap-4 mt-6">
         <button
           className="btn btn-success flex-1 py-2 px-4 rounded-md text-white bg-green-500 hover:bg-green-600 transition duration-150"
-         
+          onClick={handleAccept}
         >
-          Approve
+          Accept
         </button>
         <button
           className="btn btn-error flex-1 py-2 px-4 rounded-md text-white bg-red-500 hover:bg-red-600 transition duration-150"
-          
+          onClick={handleReject}
         >
           Reject
         </button>

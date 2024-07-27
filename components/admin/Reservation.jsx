@@ -3,14 +3,13 @@ import { useEffect, useState } from "react";
 import Title from "../ui/Title";
 import ReservationItems from "./ReservationItems";
 
-
-
 const Reservation = () => {
   const [reservations, setReservations] = useState([]);
-  const [undefinedOrNullReservations, setUndefinedOrNullReservations] = useState([]);
+  const [undefinedOrNullReservations, setUndefinedOrNullReservations] =
+    useState([]);
   const [trueReservations, setTrueReservations] = useState([]);
   const [falseReservations, setFalseReservations] = useState([]);
-  
+
   const status = ["preparing", "on the way", "delivered"];
 
   useEffect(() => {
@@ -27,11 +26,11 @@ const Reservation = () => {
     getReservations();
   }, []);
 
-
   useEffect(() => {
     const filterReservations = () => {
       const undefinedOrNullReservations = reservations.filter(
-        (reservation) => reservation.status === undefined || reservation.status === null
+        (reservation) =>
+          reservation.status === undefined || reservation.status === null
       );
       const trueReservations = reservations.filter(
         (reservation) => reservation.status === true
@@ -47,8 +46,6 @@ const Reservation = () => {
 
     filterReservations();
   }, [reservations]);
-
-
 
   const handleStatus = async (id) => {
     const item = orders.find((order) => order._id === id);
@@ -70,38 +67,16 @@ const Reservation = () => {
     <div className="lg:p-8 flex-1 lg:mt-0 mt-5">
       <Title addClass="text-[40px]">Reservations</Title>
       <div className="flex gap-6 flex-wrap mt-8">
-{undefinedOrNullReservations.length>0 && undefinedOrNullReservations.map((undefinedOrNullReservation)=><ReservationItems key={undefinedOrNullReservation._id} undefinedOrNullReservation={undefinedOrNullReservation}/>)}
-</div>
-       <div className="overflow-x-auto w-full mt-5">
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        {undefinedOrNullReservations.length > 0 &&
+          undefinedOrNullReservations.map((undefinedOrNullReservation) => (
+            <ReservationItems
+              key={undefinedOrNullReservation._id}
+              undefinedOrNullReservation={undefinedOrNullReservation}
+              setReservations={setReservations}
+            />
+          ))}
+      </div>
+      <div className="overflow-x-auto w-full mt-5">
         <table className="w-full text-sm text-center text-gray-500 xl:min-w-[1000px]">
           <thead className="text-xs text-gray-400 uppercase bg-gray-700">
             <tr>
