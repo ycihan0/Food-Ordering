@@ -20,7 +20,7 @@ body {
 /* :opacity-70 */
 
 .slick-dots {
-  @apply !flex justify-start w-full;
+  @apply !flex justify-center w-full;
 }
 
 .slick-dots li {

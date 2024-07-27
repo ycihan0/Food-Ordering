@@ -57,7 +57,7 @@ const Campaigns = () => {
   }, []);
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 2,
@@ -65,6 +65,14 @@ const Campaigns = () => {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 3000,
+    appendDots: (dots) => (
+      <div>
+        <ul className="">{dots}</ul>
+      </div>
+    ),
+    customPaging: (i) => (
+      <div className="w-3 h-3 border bg-white rounded-full mt-10"></div>
+    ),
     responsive: [
       {
         breakpoint: 1024,
