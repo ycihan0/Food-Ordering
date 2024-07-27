@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-toastify";
 import AddProduct from "@/components/admin/AddProduct";
+import Reservation from "@/components/admin/Reservation";
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
   const [isProductModal, setIsProductModal] = useState(false);
@@ -61,19 +62,28 @@ const Profile = () => {
             <button className="ml-1">Orders</button>
           </li>
           <li
-            className={`border border-t-0  w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
+            className={`border  border-t-0  w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
               tabs === 2 && "bg-primary text-white"
             }`}
             onClick={() => setTabs(2)}
           >
-            <i className="fa fa-ellipsis-h"></i>
-            <button className="ml-1">Categories</button>
+            <i className="fa fa-table"></i>
+            <button className="ml-1">Reservations</button>
           </li>
           <li
             className={`border border-t-0  w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
               tabs === 3 && "bg-primary text-white"
             }`}
             onClick={() => setTabs(3)}
+          >
+            <i className="fa fa-ellipsis-h"></i>
+            <button className="ml-1">Categories</button>
+          </li>
+          <li
+            className={`border border-t-0  w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
+              tabs === 4 && "bg-primary text-white"
+            }`}
+            onClick={() => setTabs(4)}
           >
             <i className="fa fa-window-maximize"></i>
             <button className="ml-1">Footer</button>
@@ -89,8 +99,9 @@ const Profile = () => {
       </div>
       {tabs === 0 && <Products />}
       {tabs === 1 && <Order />}
-      {tabs === 2 && <Category />}
-      {tabs === 3 && <Footer />}
+      {tabs === 2 && <Reservation />}
+      {tabs === 3 && <Category />}
+      {tabs === 4 && <Footer />}
       {isProductModal && <AddProduct setIsProductModal={setIsProductModal} />}
       <button
         className="btn-primary !w-12 !h-12 !p-0 fixed bottom-14 right-10 text-4xl"

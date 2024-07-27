@@ -22,8 +22,11 @@ const BookSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    fullName: {
+    status: {
       type: Boolean,
+    },
+    tableNumber: {
+      type: String,
     },
   },
   { timestamps: true }
