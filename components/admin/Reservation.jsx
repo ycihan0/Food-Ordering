@@ -27,15 +27,21 @@ const Reservation = () => {
   }, []);
 
   useEffect(() => {
+    const now = new Date();
+
+    const sortedReservations = reservations
+      .filter((reservation) => new Date(reservation.date) > now) // Saatten sonraki olanları filtrele yani geçmiş olanları gizle
+      .sort((a, b) => new Date(a.date) - new Date(b.date)); // Tarihe göre sıralama
+
     const filterReservations = () => {
-      const undefinedOrNullReservations = reservations.filter(
+      const undefinedOrNullReservations = sortedReservations.filter(
         (reservation) =>
           reservation.status === undefined || reservation.status === null
       );
-      const trueReservations = reservations.filter(
+      const trueReservations = sortedReservations.filter(
         (reservation) => reservation.status === true
       );
-      const falseReservations = reservations.filter(
+      const falseReservations = sortedReservations.filter(
         (reservation) => reservation.status === false
       );
 
@@ -47,97 +53,147 @@ const Reservation = () => {
     filterReservations();
   }, [reservations]);
 
-  const handleStatus = async (id) => {
-    const item = orders.find((order) => order._id === id);
-    const currentStatus = item.status;
-    try {
-      const res = await axios.put(
-        `${process.env.NEXT_PUBLIC_API_URL}/orders/${id}`,
-        {
-          status: currentStatus + 1,
-        }
-      );
-      setOrders([res.data, ...orders.filter((order) => order._id !== id)]);
-    } catch (err) {
-      console.log(err);
-    }
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
   };
 
   return (
     <div className="lg:p-8 flex-1 lg:mt-0 mt-5">
       <Title addClass="text-[40px]">Reservations</Title>
       <div className="flex gap-6 flex-wrap mt-8">
-        {undefinedOrNullReservations.length > 0 &&
+        {undefinedOrNullReservations.length > 0 ? (
           undefinedOrNullReservations.map((undefinedOrNullReservation) => (
             <ReservationItems
               key={undefinedOrNullReservation._id}
               undefinedOrNullReservation={undefinedOrNullReservation}
               setReservations={setReservations}
             />
-          ))}
+          ))
+        ) : (
+          <h3>No booking requests</h3>
+        )}
       </div>
       <div className="overflow-x-auto w-full mt-5">
-        <table className="w-full text-sm text-center text-gray-500 xl:min-w-[1000px]">
-          <thead className="text-xs text-gray-400 uppercase bg-gray-700">
+        <Title addClass="text-[40px]">Upcoming Reservations</Title>
+        <table className="w-full text-sm text-center text-gray-500 xl:min-w-[1000px] mt-4">
+       { trueReservations.length>0?(  <thead className="text-xs text-gray-400 uppercase bg-lime-700">
             <tr>
-              <th scope="col" className="py-3 px-6">
-                PRODUCT ID
-              </th>
               <th scope="col" className="py-3 px-6">
                 CUSTOMER
               </th>
               <th scope="col" className="py-3 px-6">
-                TOTAL
+                EMAIL
               </th>
               <th scope="col" className="py-3 px-6">
-                PAYMENT
+                PHONE
               </th>
               <th scope="col" className="py-3 px-6">
-                STATUS
+                PERSONS
               </th>
               <th scope="col" className="py-3 px-6">
-                ACTION
+                DATE
+              </th>
+              <th scope="col" className="py-3 px-6">
+                TABLE NUMBER
               </th>
             </tr>
-          </thead>
-          {/* <tbody>
-            {orders.length > 0 &&
-              orders
-                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                .map((order) => (
-                  <tr
-                    className="transition-all bg-secondary border-gray-700 hover:bg-primary"
-                    key={order?._id}
-                   
-                  >
-                    <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white gap-x-1 ">
-                      {order?._id.substring(0, 6)}...
-                    </td>
-                    <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
-                      {order?.customer}
-                    </td>
-                    <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
-                      $ {order?.total}
-                    </td>
+          </thead>):""}
+          <tbody>
+            {trueReservations.length > 0 ?
+              (trueReservations.map((trueReservation) => (
+                <tr
+                  className="transition-all bg-secondary border-gray-700 hover:bg-primary"
+                  key={trueReservation._id}
+                >
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white gap-x-1 ">
+                    {trueReservation.fullName}
+                  </td>
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                    {trueReservation.email}
+                  </td>
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                    {trueReservation.phoneNumber}
+                  </td>
 
-                    <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
-                      {order?.method === 0 ? "Cash" : "Card"}
-                    </td>
-                    <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
-                      {status[order?.status]}
-                    </td>
-                    <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
-                      <button
-                        className="btn-primary !bg-success"
-                        onClick={() => handleStatus(order?._id)}
-                        disabled={order?.status > 1}
-                      >
-                        Next Stage
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-          </tbody> */}
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                    {trueReservation.persons}
+                  </td>
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                    {formatDate(trueReservation.date)}
+                  </td>
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                    {trueReservation.tableNumber && "-"}
+                  </td>
+                </tr>)
+              )):(
+                <h3>There is no upcoming reservation</h3>
+              )}
+          </tbody>
+        </table>
+      </div>
+      <div className="overflow-x-auto w-full mt-5">
+        <Title addClass="text-[40px]">Rejected Reservations</Title>
+        <table className="w-full text-sm text-center text-gray-500 xl:min-w-[1000px] mt-4">
+       {falseReservations.length>0?(<thead className="text-xs text-gray-400 uppercase bg-red-900">
+            <tr>
+              <th scope="col" className="py-3 px-6">
+                CUSTOMER
+              </th>
+              <th scope="col" className="py-3 px-6">
+                EMAIL
+              </th>
+              <th scope="col" className="py-3 px-6">
+                PHONE
+              </th>
+              <th scope="col" className="py-3 px-6">
+                PERSONS
+              </th>
+              <th scope="col" className="py-3 px-6">
+                DATE
+              </th>
+              <th scope="col" className="py-3 px-6">
+                TABLE NUMBER
+              </th>
+            </tr>
+          </thead>):""}
+          <tbody>
+            {falseReservations.length > 0 ?
+              (falseReservations.map((falseReservation) => (
+                <tr
+                  className="transition-all bg-secondary border-gray-700 hover:bg-primary"
+                  key={falseReservation._id}
+                >
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white gap-x-1 ">
+                    {falseReservation.fullName}
+                  </td>
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                    {falseReservation.email}
+                  </td>
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                    {falseReservation.phoneNumber}
+                  </td>
+
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                    {falseReservation.persons}
+                  </td>
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                    {formatDate(falseReservation.date)}
+                  </td>
+                  <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                    {falseReservation.tableNumber || "-"}
+                  </td>
+                </tr>)
+              )):(
+                <h3>There is no rejected reservation</h3>
+              )}
+          </tbody>
         </table>
       </div>
     </div>
