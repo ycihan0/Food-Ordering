@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Title from "../ui/Title";
-import { useRouter } from "next/router";
+
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
-  const router = useRouter();
   const status = ["preparing", "on the way", "delivered"];
 
   useEffect(() => {
