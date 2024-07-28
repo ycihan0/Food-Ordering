@@ -2,8 +2,25 @@ import Title from "../ui/Title";
 import CustomerItem from "./CustomerItem";
 import Slider from "react-slick";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Customers = () => {
+  const [comments, setComments] = useState([]);
+ 
+
+  useEffect(() => {
+    const getCustomerComment = async () => {
+      try {
+        const res = await axios.get('https://run.mocky.io/v3/ccbfcd11-b174-4742-9de8-d8e160abbbea');
+        setComments(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getCustomerComment();
+  }, []);
+
   function NextBtn({ onClick }) {
     return (
       <button
@@ -51,10 +68,8 @@ const Customers = () => {
     <div className="container mx-auto mb-20 mt-12">
       <Title addClass="text-[40px] text-center">What Says Our Customers</Title>
       <Slider {...settings}>
-        <CustomerItem imgSrc="/images/client2.jpg" />
-        <CustomerItem imgSrc="/images/client1.jpg" />
-        <CustomerItem imgSrc="/images/person1.jpg" />
-        <CustomerItem imgSrc="/images/person6.jpg" />
+        {comments.map((comment, index)=><CustomerItem comment={comment} key={index}/>)}
+        
       </Slider>
     </div>
   );
