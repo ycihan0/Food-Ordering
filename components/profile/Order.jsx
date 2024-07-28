@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import Title from '../ui/Title'
-import axios from 'axios';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import React, { useEffect, useState } from "react";
+import Title from "../ui/Title";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const Order = () => {
   const router = useRouter();
   const [orders, setOrders] = useState([]);
+  console.log(orders);
   const [currentUser, setCurrentUser] = useState([]);
   const { data: session } = useSession();
+
   useEffect(() => {
     const getOrders = async () => {
       try {
@@ -39,11 +41,20 @@ const Order = () => {
     getUsers();
   }, [session]);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return `${date.getDate().toString().padStart(2, "0")}-${(
+      date.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}-${date.getFullYear()}`;
+  };
+
   return (
     <div className="lg:p-8 flex-1 lg:mt-0 mt-5">
       <Title addClass="text-[40px]">Password</Title>
       <div className="overflow-x-auto w-full mt-5">
-      <table className="w-full text-sm text-center text-gray-500 xl:min-w-[1000px] min-w-100%">
+        <table className="w-full text-sm text-center text-gray-500 xl:min-w-[1000px] min-w-100%">
           <thead className="text-xs text-gray-400 uppercase bg-gray-700">
             <tr>
               <th scope="col" className="py-3 px-6">
@@ -64,26 +75,34 @@ const Order = () => {
             </tr>
           </thead>
           <tbody>
-          {orders.map((order) => (
+            {orders.map((order) => (
               <tr
                 className="transition-all bg-secondary border-gray-700 hover:bg-primary cursor-pointer"
                 key={order?._id}
-                onClick={()=>{router.push(`/order/${order?._id}`)}}
+                onClick={() => {
+                  router.push(`/order/${order?._id}`);
+                }}
               >
                 <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white flex items-center gap-x-1 justify-center">
-                  <span>63107...</span>
+                  <span>{order?._id.substring(0, 5)}...</span>
                 </td>
                 <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
-                  Adana
+                  {order?.address}
                 </td>
                 <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
-                  01-09-2022
+                  {formatDate(order?.createdAt)}
                 </td>
                 <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
-                  $18
+                  ${order?.total}
                 </td>
                 <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
-                  preparing
+                  {order?.status === 0 ? (
+                    <span>Preparing</span>
+                  ) : order?.status === 1 ? (
+                    <span>On the way</span>
+                  ) : order?.status === 2 ? (
+                    <span>Delivered</span>
+                  ) : null}
                 </td>
               </tr>
             ))}
@@ -94,4 +113,4 @@ const Order = () => {
   );
 };
 
-export default Order
+export default Order;
