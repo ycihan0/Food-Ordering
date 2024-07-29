@@ -1,3 +1,4 @@
+import { sendReservationConfirmationEmail, sendReservationRejectionEmail } from "@/util/mail";
 import Book from "../../../models/Book";
 import dbConnect from "../../../util/dbConnect";
 
@@ -11,8 +12,6 @@ const handler = async (req, res) => {
   if (method === "PUT") {
     try {
       const { status, tableNumber } = req.body;
-
-     
       const updatedReservation = await Book.findByIdAndUpdate(
         id,
         { status, tableNumber },  
@@ -26,6 +25,12 @@ const handler = async (req, res) => {
         return res.status(404).json({ message: "Reservation not found" });
       }
 
+      if (status) {
+        await sendReservationConfirmationEmail(updatedReservation.email, updatedReservation);
+      } else {
+        await sendReservationRejectionEmail(updatedReservation.email, updatedReservation);
+      }
+      
       // Başarıyla güncellendiğinde yanıt ver
       res.status(200).json(updatedReservation);
     } catch (err) {

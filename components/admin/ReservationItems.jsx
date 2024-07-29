@@ -24,6 +24,7 @@ const ReservationItems = ({ undefinedOrNullReservation }) => {
 
       if (res.status === 200) {
         toast.success("Successfully accepted");
+        
       }
     } catch (err) {
       console.error("Failed to update reservation status:", err);
@@ -50,19 +51,19 @@ const ReservationItems = ({ undefinedOrNullReservation }) => {
         {undefinedOrNullReservation.fullName}
       </h3>
       <p className="text-gray-600">
-        <span className="font-medium">Email:</span>{" "}
+        <span className="font-medium">Email:</span>
         {undefinedOrNullReservation.email}
       </p>
       <p className="text-gray-600">
-        <span className="font-medium">Phone:</span>{" "}
+        <span className="font-medium">Phone:</span>
         {undefinedOrNullReservation.phoneNumber}
       </p>
       <p className="text-gray-600">
-        <span className="font-medium">Persons:</span>{" "}
+        <span className="font-medium">Persons:</span>
         {undefinedOrNullReservation.persons}
       </p>
       <p className="text-gray-600">
-        <span className="font-medium">Date:</span>{" "}
+        <span className="font-medium">Date:</span>
         {formatDate(undefinedOrNullReservation.date)}
       </p>
       <div className="mt-4">
