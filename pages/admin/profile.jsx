@@ -9,6 +9,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import AddProduct from "@/components/admin/AddProduct";
 import Reservation from "@/components/admin/Reservation";
+import Dashboard from "@/components/admin/Dashboard";
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
   const [isProductModal, setIsProductModal] = useState(false);
@@ -43,23 +44,23 @@ const Profile = () => {
           <b className="text-2xl mt-1">Admin</b>
         </div>
         <ul className="text-center font-semibold">
-          <li
+        <li
             className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
               tabs === 0 && "bg-primary text-white"
             }`}
             onClick={() => setTabs(0)}
           >
             <i className="fa fa-cutlery"></i>
-            <button className="ml-1 ">Products</button>
+            <button className="ml-1 ">Dashboard</button>
           </li>
           <li
-            className={`border  border-t-0  w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
+            className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
               tabs === 1 && "bg-primary text-white"
             }`}
             onClick={() => setTabs(1)}
           >
-            <i className="fa fa-motorcycle"></i>
-            <button className="ml-1">Orders</button>
+            <i className="fa fa-cutlery"></i>
+            <button className="ml-1 ">Products</button>
           </li>
           <li
             className={`border  border-t-0  w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
@@ -67,23 +68,32 @@ const Profile = () => {
             }`}
             onClick={() => setTabs(2)}
           >
-            <i className="fa fa-table"></i>
-            <button className="ml-1">Reservations</button>
+            <i className="fa fa-motorcycle"></i>
+            <button className="ml-1">Orders</button>
           </li>
           <li
-            className={`border border-t-0  w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
+            className={`border  border-t-0  w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
               tabs === 3 && "bg-primary text-white"
             }`}
             onClick={() => setTabs(3)}
           >
-            <i className="fa fa-ellipsis-h"></i>
-            <button className="ml-1">Categories</button>
+            <i className="fa fa-table"></i>
+            <button className="ml-1">Reservations</button>
           </li>
           <li
             className={`border border-t-0  w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
               tabs === 4 && "bg-primary text-white"
             }`}
             onClick={() => setTabs(4)}
+          >
+            <i className="fa fa-ellipsis-h"></i>
+            <button className="ml-1">Categories</button>
+          </li>
+          <li
+            className={`border border-t-0  w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
+              tabs === 5 && "bg-primary text-white"
+            }`}
+            onClick={() => setTabs(5)}
           >
             <i className="fa fa-window-maximize"></i>
             <button className="ml-1">Footer</button>
@@ -97,11 +107,12 @@ const Profile = () => {
           </li>
         </ul>
       </div>
-      {tabs === 0 && <Products />}
-      {tabs === 1 && <Order />}
-      {tabs === 2 && <Reservation />}
-      {tabs === 3 && <Category />}
-      {tabs === 4 && <Footer />}
+      {tabs === 0 && <Dashboard/>}
+      {tabs === 1 && <Products />}
+      {tabs === 2 && <Order />}
+      {tabs === 3 && <Reservation />}
+      {tabs === 4 && <Category />}
+      {tabs === 5 && <Footer />}
       {isProductModal && <AddProduct setIsProductModal={setIsProductModal} />}
       <button
         className="btn-primary !w-12 !h-12 !p-0 fixed bottom-14 right-10 text-4xl"

@@ -89,3 +89,33 @@ export const sendReservationRejectionEmail = async (to, reservationDetails) => {
   
     await transporter.sendMail(mailOptions);
   };
+
+  export const sendOrderEmail = async (to, orderDetails) => {
+    const { fullName, orderNumber, items = [], totalPrice } = orderDetails;
+  
+    // items undefined değilse map kullan
+    const itemsList = items.length > 0
+      ? items.map(item => `<li>${item.name} - ${item.quantity}</li>`).join("")
+      : "<li>No items</li>";
+  
+    const mailOptions = {
+      from: `"Sizzle" <no-reply@sizzle.com>`,
+      to: to,
+      subject: "Order Confirmation",
+      text: `Dear ${fullName},\n\nYour order has been received and is being processed.\n\nOrder Number: ${orderNumber}\nItems:\n${items.map(item => `${item.name} - ${item.quantity}`).join("\n")}\n\nTotal Price: ${totalPrice}\n\nThank you for your purchase!`,
+      html: `
+        <p>Dear ${fullName},</p>
+        <p>Your order has been received and is being processed.</p>
+        <p><strong>Order Number:</strong> ${orderNumber}</p>
+        <p><strong>Items:</strong></p>
+        <ul>
+          ${itemsList}
+        </ul>
+        <p><strong>Total Price:</strong> ${totalPrice}</p>
+        <p>Thank you for your purchase!</p>
+        <p>Best regards,<br>Sizzle Team</p>
+      `,
+    };
+  
+    await transporter.sendMail(mailOptions);
+  };

@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 const Order = () => {
   const router = useRouter();
   const [orders, setOrders] = useState([]);
-  console.log(orders);
   const [currentUser, setCurrentUser] = useState([]);
   const { data: session } = useSession();
 
