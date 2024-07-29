@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Products from "@/components/admin/Products";
 import Order from "../../components/admin/Order";
 import Category from "@/components/admin/Category";
@@ -13,7 +13,28 @@ import Dashboard from "@/components/admin/Dashboard";
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
   const [isProductModal, setIsProductModal] = useState(false);
+  const [reservations, setReservations] = useState([]);
   const { push } = useRouter();
+
+  useEffect(() => {
+    const getReservations = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/reservation`
+        );
+        const reservationsData = res.data;
+        const filteredReservations = reservationsData.filter(
+          (reservation) =>
+            reservation.status === null || reservation.status === undefined
+        );
+        setReservations(filteredReservations);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getReservations();
+  }, []);
+
   const closeAdminAccount = async () => {
     try {
       if (confirm("Are you sure you want to close your Admin Account?")) {
@@ -38,19 +59,19 @@ const Profile = () => {
             width={100}
             height={100}
             className="rounded-full"
-            priority 
-            style={{ width: "auto", height: "auto" }} 
+            priority
+            style={{ width: "auto", height: "auto" }}
           />
           <b className="text-2xl mt-1">Admin</b>
         </div>
         <ul className="text-center font-semibold">
-        <li
+          <li
             className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
               tabs === 0 && "bg-primary text-white"
             }`}
             onClick={() => setTabs(0)}
           >
-            <i className="fa fa-cutlery"></i>
+            <i className="fa fa-dashboard"></i>
             <button className="ml-1 ">Dashboard</button>
           </li>
           <li
@@ -78,7 +99,14 @@ const Profile = () => {
             onClick={() => setTabs(3)}
           >
             <i className="fa fa-table"></i>
-            <button className="ml-1">Reservations</button>
+            <button className="relative ml-1">
+              Reservations{" "}
+              {reservations.length > 0 && (
+                <span className="px-[5px] text-[15px] ml-1 rounded-full bg-red-500 absolute  text-white inline-flex items-center justify-center font-bold">
+                  {reservations.length}
+                </span>
+              )}
+            </button>
           </li>
           <li
             className={`border border-t-0  w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all ${
@@ -107,7 +135,7 @@ const Profile = () => {
           </li>
         </ul>
       </div>
-      {tabs === 0 && <Dashboard/>}
+      {tabs === 0 && <Dashboard />}
       {tabs === 1 && <Products />}
       {tabs === 2 && <Order />}
       {tabs === 3 && <Reservation />}
