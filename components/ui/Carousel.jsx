@@ -37,7 +37,7 @@ const Carousel = () => {
       </div>
       <Slider {...settings}>
         <div>
-          <div className="mt-48 container mx-auto  text-white flex flex-col items-start gap-y-8">
+          <div className="sm:mt-44 container mx-auto  text-white flex flex-col items-start gap-y-8 mt-10">
             <Title addClass="text-5xl">Fast Food Restaurant</Title>
             <p className="text-sm sm:w-2/5 w-full">
               Welcome to our fast food paradise! Enjoy mouth-watering burgers,
@@ -49,7 +49,7 @@ const Carousel = () => {
           </div>
         </div>
         <div>
-          <div className="mt-48 container mx-auto  text-white flex flex-col items-start gap-y-8">
+          <div className="sm:mt-44 container mx-auto  text-white flex flex-col items-start gap-y-8 mt-10">
             <Title addClass="text-5xl">Fast Food Restaurant</Title>
             <p className="text-sm sm:w-2/5 w-full">
               Taste the best in fast food! Enjoy perfect burgers, crispy fries,
@@ -60,8 +60,8 @@ const Carousel = () => {
           </div>
         </div>
         <div>
-          <div className="mt-48 container mx-auto  text-white flex flex-col items-start gap-y-8">
-            <Title addClass="text-6xl">Savor the Flavor Revolution!</Title>
+          <div className="sm:mt-44 container mx-auto  text-white flex flex-col items-start gap-y-8 mt-10">
+            <Title addClass="text-6xl">Savor Flavor Revolution!</Title>
             <p className="text-sm sm:w-2/5 w-full">
               Step into fast food bliss! Our delicious burgers, crispy fries,
               and refreshing drinks are crafted to perfection. Ideal for a quick
