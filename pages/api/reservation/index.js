@@ -1,5 +1,6 @@
 import Book from "../../../models/Book";
 import dbConnect from "../../../util/dbConnect";
+import { sendReservationEmail } from "@/util/mail";
 
 const handler = async (req, res) => {
   await dbConnect();
@@ -14,12 +15,21 @@ const handler = async (req, res) => {
     }
   }
 
+ 
   if (method === "POST") {
     try {
-      const newProduct = await Book.create(req.body);
-      res.status(201).json(newProduct);
+      const reservationDetails = req.body; 
+      const newReservation = await Book.create(reservationDetails);
+
+      await sendReservationEmail(
+        reservationDetails.email,
+        reservationDetails
+      );
+
+      res.status(201).json({ message: "Reservation successful and email sent.", newReservation });
     } catch (err) {
       console.log(err);
+      res.status(500).json({ message: "Internal Server Error" });
     }
   }
 };
