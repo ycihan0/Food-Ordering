@@ -89,7 +89,7 @@ const Dashboard = () => {
       <Title addClass="text-[40px]">Dashboard</Title>
       <div className="overflow-auto max-h-[400px] w-full mt-5">
         <div className="p-6 bg-gradient-to-r from-gray-100 to-white rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Statistics</h2>
+ 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {/* Order Statistics */}
             <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200">
