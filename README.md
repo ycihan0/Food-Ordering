@@ -1,57 +1,76 @@
 <p align="center">
 </p>
 <p align="center">
-  <a href="https://github.com/ycihan0/Food-Ordering/graphs/contributors"><img src="https://img.shields.io/github/contributors/ycihan0/Food-Ordering.svg?style=for-the-badge"></a>
-  <a href="https://github.com/ycihan0/Food-Ordering/network/members"><img src="https://img.shields.io/github/forks/ycihan0/Food-Ordering.svg?style=for-the-badge"></a>
-  <a href="https://github.com/ycihan0/Food-Ordering/stargazers"><img src="https://img.shields.io/github/stars/ycihan0/Food-Ordering.svg?style=for-the-badge"></a>
-  <a href="https://github.com/ycihan0/Food-Ordering/issues"><img src="https://img.shields.io/github/issues/ycihan0/Food-Ordering.svg?style=for-the-badge"></a>
-  <a href="https://github.com/ycihan0/Food-Ordering/blob/master/LICENSE"><img src="https://img.shields.io/github/license/ycihan0/Food-Ordering.svg?style=for-the-badge"></a>
   <a href="https://github.com/ycihan0/Food-Ordering"><img src="https://komarev.com/ghpvc/?username=ycihan0&label=Project%20views&color=0e75b6&style=for-the-badge" alt="Project views" /></a>
 </p>
 <p align="center">
- <h3 align="center">Food Ordering</h3>
+ <h3 align="center">Food Ordering with Next.js</h3>
   <p align="center">
   <p align="center">
 
+# Full-Stack Food Ordering Project With Next.js
+# Welcome to Sizzle
+Click to see the demo👉 soon...
+Visit for admin panel👉soon..
 
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#  What was used?
+- Next.js
+- React
+- Tailwind Css
+- Redux-toolkit
+- Redux
+- Next-Auth
+- MongoDB
+- Cloudinary
+- Papercut-SMTP
+- React-icons
+- React-outside-click-handler
+- React-slick
+- Formik
+- Yup
+- Font-awesome
+- Mongoose
+- Bcrypt.js
+- Axios
+- React-toastify
+- Cookie
+- React-spinners
+- Nprogress
+- Socked.io
+- Nodemailer
+# What does it contain?
+- Admin Panel
+- Payment
+- Serach product
+- React-Accessible-Accordion
+- Membership
+- Product reviews
+- Filter by category
+- Product and Category Management
+- Coupon Codes
+- Cart transactions
+#  What can admin do?
+-soon
+# Get started 
+- firstly fork
+- download
+- npm install
+- yarn dev or npm run dev
+- 
+# Images from the project
+![sizzle kopya](https://github.com/user-attachments/assets/55466b84-72d0-46bf-9a6e-e0e1f8ed0e21)
+![responsive-mobile kopya](https://github.com/user-attachments/assets/0e4f456d-9012-48e9-a79f-d7e354d1fed3)
+![login kopya](https://github.com/user-attachments/assets/10d89199-1070-4b2b-a4e3-4faf38dfa04f)
+![ourmenu kopya](https://github.com/user-attachments/assets/ab00c3e5-47b2-49ca-b6b2-fbff548bc341)
+![search kopya](https://github.com/user-attachments/assets/de46e5de-b043-4325-8828-7bd20c877f13)
+![productdetail kopya](https://github.com/user-attachments/assets/14b6433f-dfd3-4d43-8aa1-c543cfef12e5)
+![campaigns and comments kopya](https://github.com/user-attachments/assets/86c050f9-1a77-4e97-b20c-1ef174776684)
+![reservation kopya](https://github.com/user-attachments/assets/c9e13f80-6132-40d1-91fb-9c4e7a541283)
+![header-footer kopya](https://github.com/user-attachments/assets/b26d9ec8-f7e4-414e-ae38-3cb473fa3703)
+![profile kopya](https://github.com/user-attachments/assets/2c8f97da-137b-447c-87fb-96cb8470c6bd)
+![cart kopya](https://github.com/user-attachments/assets/9514aa6f-4c22-45a7-a930-55a1419582ac)
+# Admin Panel
+![admib orders kopya](https://github.com/user-attachments/assets/a27fb5f6-6d75-4a9c-b8f9-270166106716)
+![admin products kopya](https://github.com/user-attachments/assets/88ad4872-fda2-420c-a7e0-3282c6bc6f85)
+![rezervation kopya](https://github.com/user-attachments/assets/247957c3-e6ed-4c66-b622-85c14cd00d78)
+![adminpage kopya](https://github.com/user-attachments/assets/ab743759-15de-4dbd-8079-387ca9e0b007)
