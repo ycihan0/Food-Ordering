@@ -5,6 +5,8 @@
 </p>
 
 # Full-Stack Food Ordering Project With Next.js
+  This project is a comprehensive meal ordering and reservation system developed for a fast food restaurant. Built using modern technologies like Next.js, meticulously styled with Tailwind CSS, and utilizing MongoDB as the database, the system offers a user-friendly interface for customers and an efficient management tool for the admin to track orders and manage reservations.
+  
 # Welcome to Sizzle
 Click to see the demo👉 soon...
 Visit for admin panel👉soon..
@@ -34,19 +36,27 @@ Visit for admin panel👉soon..
 - Nprogress
 - Socked.io
 - Nodemailer
-# What does it contain?
-- Admin Panel
-- Payment
-- Serach product
-- React-Accessible-Accordion
-- Membership
-- Product reviews
-- Filter by category
-- Product and Category Management
-- Coupon Codes
-- Cart transactions
+  
+# What can the user do?
+- View Menus: Users can browse the restaurant’s full menu in detail.
+- Add Products to Cart: Users can add desired products to their cart and place orders.
+- Make Reservations: Users can make restaurant reservations for a specific date and time.
+- Receive Email Notifications: Users are notified via email about their reservation and order status.
+- Search Products: Users can easily find products using the search function.
+- Sign Up/Log In: Users can create an account and log in to the system.
+- Log In with GitHub: Users can log in easily with their GitHub account.
+- View Profile: Users can view their profile information.
+- Update Profile Information: Users can update their profile details.
+- Change Password: Users can change their password easily.
+- View and Track Orders: Users can view and track their past orders
 #  What can admin do?
--soon
+- View Dashboard Statistics: Admins can view overall system statistics and status on the dashboard.
+- Add, Update, and Delete Products: Admins can add new products to the menu, update existing ones, or delete them.
+- View Orders: Admins can view incoming orders and manage them.
+- Change Order Status: Admins can update the status of orders (e.g., preparing, on the way, delivered).
+- View and Manage Reservation Requests: Admins can review, approve, or reject incoming reservation requests.
+- Add Product Categories: Admins can add new product categories to the menu.
+- Update Footer Information: Admins can update the information in the website's footer section.
 # Get started 
 - firstly fork
 - download
