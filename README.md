@@ -3,11 +3,6 @@
 <p align="center">
   <a href="https://github.com/ycihan0/Food-Ordering"><img src="https://komarev.com/ghpvc/?username=ycihan0&label=Project%20views&color=0e75b6&style=for-the-badge" alt="Project views" /></a>
 </p>
-<p align="center">
- <h3 align="center">Food Ordering with Next.js</h3>
-  <p align="center">
-  <p align="center">
-
 # Full-Stack Food Ordering Project With Next.js
 # Welcome to Sizzle
 Click to see the demo👉 soon...
@@ -56,7 +51,6 @@ Visit for admin panel👉soon..
 - download
 - npm install
 - yarn dev or npm run dev
-- 
 # Images from the project
 ![sizzle kopya](https://github.com/user-attachments/assets/55466b84-72d0-46bf-9a6e-e0e1f8ed0e21)
 ![responsive-mobile kopya](https://github.com/user-attachments/assets/0e4f456d-9012-48e9-a79f-d7e354d1fed3)
