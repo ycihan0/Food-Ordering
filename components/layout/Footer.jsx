@@ -11,7 +11,7 @@ const Footer = () => {
         const res = await axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/footer`
         );
-        setFooter(res.data[0]);
+        setFooter(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -26,17 +26,17 @@ const Footer = () => {
           <div className="md:flex-1">
             <Title addClass="text-[30px]">Contact Us</Title>
             <div className="flex flex-col gap-y-2 mt-3">
-              <a href={footer?.location} target="_blank" rel="noreferrer">
+              <a href={footer[0]?.location} target="_blank" rel="noreferrer">
                 <i className="fa fa-map-marker"></i>
                 <span className="inline-block ml-2">Location</span>
               </a>
-              <a href={`tel:${footer?.phoneNumber}`}>
+              <a href={`tel:${footer[0]?.phoneNumber}`}>
                 <i className="fa fa-phone"></i>
                 <span className="inline-block ml-2">
-                  Call +90 {footer?.phoneNumber}
+                  Call +90 {footer[0]?.phoneNumber}
                 </span>
               </a>
-              <a href={`mailto:${footer?.email}`}>
+              <a href={`mailto:${footer[0]?.email}`}>
                 <i className="fa fa-envelope"></i>
                 <span className="inline-block ml-2">cihan_yuksel26@hotmail.com</span>
               </a>
@@ -44,7 +44,7 @@ const Footer = () => {
           </div>
           <div className="md:flex-1">
             <Title addClass="text-[38px]">Sizzle</Title>
-            <p className="mt-3">{footer?.desc}</p>
+            <p className="mt-3">{footer[0]?.desc}</p>
             <div className="flex items-center justify-center mt-5 gap-x-2">
               {footer?.socialMedia?.map((item) => (
                 <a
@@ -64,12 +64,12 @@ const Footer = () => {
             <div className="flex flex-col gap-y-2 mt-3">
               <div>
                 <span className="inline-block ml-2">
-                  {footer?.openingHours?.day}
+                  {footer[0]?.openingHours?.day}
                 </span>
               </div>
               <div>
                 <span className="inline-block ml-2">
-                  {footer?.openingHours?.hour}
+                  {footer[0]?.openingHours?.hour}
                 </span>
               </div>
             </div>
