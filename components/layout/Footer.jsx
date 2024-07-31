@@ -38,7 +38,7 @@ const Footer = () => {
               </a>
               <a href={`mailto:${footer[0]?.email}`}>
                 <i className="fa fa-envelope"></i>
-                <span className="inline-block ml-2">cihan_yuksel26@hotmail.com</span>
+                <span className="inline-block ml-2">{footer[0]?.email}</span>
               </a>
             </div>
           </div>
