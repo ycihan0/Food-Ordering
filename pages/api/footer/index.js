@@ -1,11 +1,9 @@
-import cors from "@/lib/cors";
 import Footer from "../../../models/Footer";
 import dbConnect from "../../../util/dbConnect";
 
 const handler = async (req, res) => {
   await dbConnect();
-  await cors(req, res);
-  
+
   const { method } = req;
 
   if (method === "GET") {
