@@ -6,6 +6,7 @@
 
 # Full-Stack Food Ordering Project With Next.js
   This project is a comprehensive meal ordering and reservation system developed for a fast food restaurant. Built using modern technologies like Next.js, meticulously styled with Tailwind CSS, and utilizing MongoDB as the database, the system offers a user-friendly interface for customers and an efficient management tool for the admin to track orders and manage reservations.
+
   
 # Welcome to Sizzle
 - Click to see the demo👉 https://food-ordering-cihan-project.vercel.app
