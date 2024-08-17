@@ -11,8 +11,8 @@
 # Welcome to Sizzle
 - Click to see the demo👉 https://food-ordering-cihan-project.vercel.app
 - Visit for admin panel👉 https://food-ordering-cihan-project.vercel.app/admin
-- username:admin
-- password:Passw0rd!
+- username: admin
+- password: Passw0rd!
 
 #  What was used?
 - Next.js
